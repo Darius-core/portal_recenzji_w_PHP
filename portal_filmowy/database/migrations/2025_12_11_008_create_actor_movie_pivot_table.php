@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('directors', function (Blueprint $table) {
+        Schema::create('actor_movie', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('surname');
-            $table->text('bio')->nullable();
-            $table->date('birthday')->nullable();
-            $table->timestamps();
+            $table->foreingId('actor_id')->constrained();
+            $table->foreingId('movie_id')->constrained();
         });
 
         
@@ -28,7 +25,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('directors');
+        Schema::dropIfExists('actor_movie');
         
     }
 };
