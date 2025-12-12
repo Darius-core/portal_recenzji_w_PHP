@@ -1,0 +1,29 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Movie extends Model{
+
+    protected $fillable = [
+        'title', 'description', 'release_year', 'poster_path'
+    ];
+
+    public function actors(){
+        return $this->belongsToMany(Actor::class);
+    }
+
+    public function directors(){
+        return $this->belongsToMany(Director::class);
+    }
+
+    public function reviews(){
+        return $this->hasMany(Review::class);
+    }
+
+    public function averageRating(){
+        return $this->reviews()->avg('rating') ?? 0;
+    }
+
+}
