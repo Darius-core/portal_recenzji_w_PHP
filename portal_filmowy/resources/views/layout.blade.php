@@ -1,25 +1,42 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <title>Portal Filmowy</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body class="bg-dark text-light">
-<nav class="navbar navbar-expand-lg navbar-dark bg-secondary mb-4">
-    <div class="container">
-        <a class="navbar-brand" href="{{ route('home') }}">🎥 Portal Filmowy</a>
-        <div>
-            <a class="nav-link d-inline text-light" href="{{ route('home') }}">Strona główna</a>
-            <a class="nav-link d-inline text-light" href="{{ route('o-autorze') }}">O autorze</a>
-            <a class="nav-link d-inline text-light" href="{{ route('home') }}">Galeria</a>
-            <a class="nav-link d-inline text-light" href="{{ route('home') }}">Dodaj recenzję</a>
-        </div>
-    </div>
-</nav>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>@yield('title','Portal filmowy')</title>
 
-<div class="container">
+<link rel="stylesheet" href="/css/app.css">
+
+</head>
+<body>
+
+<a href="#content" class="skip-link">Przejdź do treści</a>
+
+<header>
+<nav aria-label="Główna nawigacja">
+    <a href="{{ route('home') }}">🎬 Portal filmowy</a>
+    <a href="{{ route('movies.index') }}">Filmy</a>
+
+    @auth
+        <span>Witaj, {{ auth()->user()->name }}</span>
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button>Wyloguj</button>
+        </form>
+    @else
+        <a href="{{ route('login') }}">Logowanie</a>
+        <a href="{{ route('register') }}">Rejestracja</a>
+    @endauth
+</nav>
+</header>
+
+<main id="content">
     @yield('content')
-</div>
+</main>
+
+<footer>
+    <p>© {{ date('Y') }} Portal filmowy</p>
+</footer>
+
 </body>
 </html>
