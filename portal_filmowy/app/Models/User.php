@@ -34,4 +34,8 @@ class User extends Authenticatable{
         return $this->roles()->where('name', 'admin')->exists();
     }
 
+    public function scopeActive($query){
+        return $query->where('is_active', true);
+    }
+
 }

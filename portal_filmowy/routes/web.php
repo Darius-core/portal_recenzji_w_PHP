@@ -4,7 +4,8 @@ use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
-
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin;
 
 /* STRONA GŁÓWNA */
 Route::get('/', [MovieController::class, 'index'])->name('home');
@@ -38,4 +39,6 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::get('reviews', [Admin\ReviewController::class, 'index'])->name('reviews.index');
     Route::delete('reviews/{review}', [Admin\ReviewController::class, 'destroy'])->name('reviews.destroy');
 
+    Route::resource('users', UserController::class)->except(['create','store','destroy']);
+    Route::patch('users/{user}/toggle', [UserController::class, 'toggle'])->name('users.toggle');
 });
