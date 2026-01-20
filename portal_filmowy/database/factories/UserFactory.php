@@ -16,7 +16,7 @@ class UserFactory extends Factory
             'password' => Hash::make('password'),
             'font_size' => fake()->randomFloat(1,1.0,1.5),
             'high_contrast' => fake()->boolean(15),
-            'rememder_token' => str()->random(10),
+            'remember_token' => Str::random(10),
         ];
     }
 }

@@ -23,7 +23,7 @@ return new class extends Migration
             $table->boolean('high_contrast')->default(false);
 
             $table->rememberToken();
-            $table->timestamp();
+            $table->timestamps();
 
         });
 
