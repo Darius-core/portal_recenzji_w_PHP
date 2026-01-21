@@ -23,7 +23,7 @@ class MovieController extends Controller{
 
         $averageRating = round($movie->reviews()->avg('rating'),1);
 
-        return view('movies.show', compact('movie', 'averageRating'));
+        return view('movies.show', compact('movie'));
 
     }
 }

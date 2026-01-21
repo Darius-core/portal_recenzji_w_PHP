@@ -25,7 +25,7 @@ class Movie extends Model{
     }
 
     public function averageRating(){
-        return $this->reviews()->avg('rating') ?? 0;
+        return round($this->reviews()->avg('rating'), 1);
     }
 
 }
