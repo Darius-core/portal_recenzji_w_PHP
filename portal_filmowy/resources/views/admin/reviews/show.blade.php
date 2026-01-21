@@ -1,24 +1,28 @@
 @extends('admin.layout')
 
 @section('content')
-<h1>Recenzja filmu: {{ $review->movie->title }}</h1>
+<h1>Podgląd recenzji</h1>
 
-<p><strong>Autor:</strong> {{ $review->user->name }}</p>
-<p><strong>Ocena:</strong> {{ $review->rating }}/10</p>
+<div class="card">
+    <p><strong>Film:</strong> {{ $review->movie->title }}</p>
+    <p><strong>Autor:</strong> {{ $review->user->name }}</p>
+    <p><strong>Ocena:</strong> {{ $review->rating }}/10</p>
+    <p><strong>Treść:</strong></p>
+    <p>{{ $review->content }}</p>
 
-<article aria-label="Treść recenzji">
-    {{ $review->content }}
-</article>
+    <a href="{{ route('admin.reviews.index') }}" class="btn btn-secondary">
+        ↩ Powrót
+    </a>
 
-<form method="POST" action="{{ route('admin.reviews.update',$review) }}">
-@csrf
-@method('PUT')
-
-<label>
-<input type="checkbox" name="approved" value="1" {{ $review->approved ? 'checked' : '' }}>
-Zatwierdzona
-</label>
-
-<button>Zapisz status</button>
-</form>
+    <form method="POST"
+          action="{{ route('admin.reviews.destroy', $review) }}"
+          style="display:inline-block"
+          onsubmit="return confirm('Usunąć recenzję?')">
+        @csrf
+        @method('DELETE')
+        <button class="btn btn-danger">
+            🗑 Usuń
+        </button>
+    </form>
+</div>
 @endsection

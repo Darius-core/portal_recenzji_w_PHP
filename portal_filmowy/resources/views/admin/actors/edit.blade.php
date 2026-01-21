@@ -1,22 +1,70 @@
 @extends('admin.layout')
 
 @section('content')
-<h1>Edytuj aktora</h1>
+<div class="container">
+    <h1>Edytuj aktora</h1>
 
-<form method="POST" action="{{ route('admin.actors.update',$actor) }}">
-@csrf
-@method('PUT')
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
-<label>
-    Imię
-    <input type="text" name="first_name" value="{{ $actor->first_name }}" required>
-</label>
+    <form action="{{ route('admin.actors.update', $actor) }}" method="POST">
+        @csrf
+        @method('PUT')
 
-<label>
-    Nazwisko
-    <input type="text" name="last_name" value="{{ $actor->last_name }}" required>
-</label>
+        <div class="mb-3">
+            <label class="form-label">Imię</label>
+            <input
+                type="text"
+                name="first_name"
+                class="form-control"
+                value="{{ old('first_name', $actor->first_name) }}"
+                required
+            >
+        </div>
 
-<button>Zapisz zmiany</button>
-</form>
+        <div class="mb-3">
+            <label class="form-label">Nazwisko</label>
+            <input
+                type="text"
+                name="last_name"
+                class="form-control"
+                value="{{ old('last_name', $actor->last_name) }}"
+                required
+            >
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Biografia</label>
+            <textarea
+                name="bio"
+                class="form-control"
+                rows="4"
+            >{{ old('bio', $actor->bio) }}</textarea>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Data urodzenia</label>
+            <input
+                type="date"
+                name="birthday"
+                class="form-control"
+                value="{{ old('birthday', $actor->birthday?->format('Y-m-d')) }}"
+            >
+        </div>
+
+        <div class="d-flex gap-2">
+            <button class="btn btn-primary">Zapisz zmiany</button>
+            <a href="{{ route('admin.actors.index') }}" class="btn btn-secondary">
+                Anuluj
+            </a>
+        </div>
+    </form>
+</div>
 @endsection

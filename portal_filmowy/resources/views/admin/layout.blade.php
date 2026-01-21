@@ -21,6 +21,12 @@ th, td { border:1px solid #444; padding:0.5rem; }
     <a href="{{ route('admin.actors.index') }}">Aktorzy</a>
     <a href="{{ route('admin.directors.index') }}">Reżyserzy</a>
     <a href="{{ route('admin.reviews.index') }}">Recenzje</a>
+    
+    <span>Witaj, {{ auth()->user()->name }}</span>
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button>Wyloguj</button>
+        </form>
 </nav>
 
 <main tabindex="-1">

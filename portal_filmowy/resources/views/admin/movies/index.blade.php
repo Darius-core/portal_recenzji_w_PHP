@@ -19,7 +19,7 @@
 <tr>
     <td>{{ $movie->title }}</td>
     <td>{{ $movie->release_year }}</td>
-    <td>{{ number_format($movie->reviews_avg_rating ?? 0, 1) }}</td>
+    <td>{{ number_format($movie->averageRating() ?? 0, 1) }}</td>
     <td>
         <a href="{{ route('admin.movies.edit',$movie) }}">Edytuj</a>
 

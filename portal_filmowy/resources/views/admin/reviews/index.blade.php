@@ -9,7 +9,6 @@
     <th>Film</th>
     <th>Autor</th>
     <th>Ocena</th>
-    <th>Status</th>
     <th>Akcje</th>
 </tr>
 </thead>
@@ -19,19 +18,21 @@
     <td>{{ $review->movie->title }}</td>
     <td>{{ $review->user->name }}</td>
     <td>{{ $review->rating }}/10</td>
-    <td>{{ $review->approved ? '✔️ Aktywna' : '⏳ Oczekuje' }}</td>
     <td>
-        <a href="{{ route('admin.reviews.show',$review) }}">Podgląd</a>
+        <<a href="{{ route('admin.reviews.show', $review) }}" class="btn btn-sm btn-info">
+            👁 Podgląd
+        </a>
 
         <form method="POST"
-              action="{{ route('admin.reviews.destroy',$review) }}"
-              style="display:inline">
-            @csrf
-            @method('DELETE')
-            <button aria-label="Usuń recenzję">
-                Usuń
-            </button>
-        </form>
+          action="{{ route('admin.reviews.destroy', $review) }}"
+          style="display:inline-block"
+          onsubmit="return confirm('Usunąć recenzję?')">
+        @csrf
+        @method('DELETE')
+        <button class="btn btn-danger">
+            🗑 Usuń
+        </button>
+    </form>
     </td>
 </tr>
 @endforeach

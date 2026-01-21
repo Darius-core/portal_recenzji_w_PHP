@@ -14,7 +14,7 @@
 
 <label>
     Rok produkcji
-    <input type="number" name="year" value="{{ $movie->year }}" required>
+    <input type="number" name="release_year" value="{{ $movie->release_year }}" required>
 </label>
 
 <label>

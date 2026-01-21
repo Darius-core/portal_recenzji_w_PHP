@@ -3,6 +3,8 @@
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ActorController;
+use App\Http\Controllers\DirectorController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\MovieController as AdminMovieController;
@@ -17,6 +19,12 @@ Route::get('/', [MovieController::class, 'index'])->name('home');
 /* FILMY */
 Route::get('/movies', [MovieController::class, 'index'])->name('movies.index');
 Route::get('/movies/{movie}', [MovieController::class, 'show'])->name('movies.show');
+
+/* AKTORZY */
+Route::resource('actors', ActorController::class)->only(['show']);
+
+/* REŻYSERZY */
+Route::resource('directors', DirectorController::class)->only(['show']);
 
 /* RECENZJE */
 Route::middleware('auth')->group(function () {
@@ -41,6 +49,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::resource('directors', AdminDirectorController::class);
 
     Route::get('reviews', [AdminReviewController::class, 'index'])->name('reviews.index');
+    Route::get('reviews/{review}', [AdminReviewController::class, 'show'])->name('reviews.show');
     Route::delete('reviews/{review}', [AdminReviewController::class, 'destroy'])->name('reviews.destroy');
 
     Route::resource('users', UserController::class)->except(['create','store','destroy']);

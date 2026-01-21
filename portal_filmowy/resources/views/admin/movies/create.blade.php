@@ -13,7 +13,7 @@
 
 <label>
     Rok produkcji
-    <input type="number" name="year" required>
+    <input type="number" name="release_year" required>
 </label>
 
 <label>
