@@ -4,6 +4,8 @@
 
 @section('content')
 <h1>{{ $director->first_name }} {{ $director->last_name }}</h1>
+<p><strong>Data urodzin:</strong> {{$director->birthday}}</p>
+<a>{{$director->bio}}</a>
 
 <h2>Filmy</h2>
 <ul>

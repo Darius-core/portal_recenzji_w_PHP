@@ -5,10 +5,10 @@
 @section('content')
 <article>
 <h1>{{ $movie->title }}</h1>
-
-<p><strong>Rok:</strong> {{ $movie->year }}</p>
+<img src="{{ $movie->poster_path }}"  alt="{{ $movie->title }}">
+<p><strong>Rok:</strong> {{ $movie->release_year }}</p>
 <p><strong>Średnia ocena:</strong>
-   {{ number_format($movie->reviews_avg_rating ?? 0,1) }}/10</p>
+   {{ $movie->averageRating() ?? 'brak' }}/10</p>
 
 <p>{{ $movie->description }}</p>
 
