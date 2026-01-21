@@ -1,9 +1,9 @@
 @extends('layout')
 
-@section('title',$director->name.' '.$director->surname)
+@section('title',$director->first_name.' '.$director->last_name)
 
 @section('content')
-<h1>{{ $director->name }} {{ $director->surname }}</h1>
+<h1>{{ $director->first_name }} {{ $director->last_name }}</h1>
 
 <h2>Filmy</h2>
 <ul>

@@ -3,9 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Modles\Movie;
-use App\Modles\Actor;
-use App\Modles\Director;
+use App\Models\Movie;
+use App\Models\Actor;
+use App\Models\Director;
 
 class MovieRelationSeeder extends Seeder{
     public function run():void{

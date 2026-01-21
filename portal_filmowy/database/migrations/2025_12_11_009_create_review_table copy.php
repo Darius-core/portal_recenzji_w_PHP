@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('movie_id')->constrained();
-            $table->integer('rating')->checkBetween(1,10);
+            $table->unsignedTinyInteger('rating');
             $table->text('content');
             $table->timestamps();
         });

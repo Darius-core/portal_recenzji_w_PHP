@@ -16,7 +16,7 @@ class DirectorController extends Controller{
     }
 
     public function store(Request $request){
-        Director::create($request->validate(['name' => 'required']));
+        Director::create($request->validate(['first_name' => 'required']));
         return back();
     }
 

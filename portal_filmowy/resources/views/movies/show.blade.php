@@ -18,7 +18,7 @@
 @foreach($movie->actors as $actor)
 <li>
 <a href="{{ route('actors.show',$actor) }}">
-{{ $actor->name }} {{ $actor->surname }}
+{{ $actor->first_name }} {{ $actor->last_name }}
 </a>
 </li>
 @endforeach
@@ -31,7 +31,7 @@
 @foreach($movie->directors as $director)
 <li>
 <a href="{{ route('directors.show',$director) }}">
-{{ $director->name }} {{ $director->surname }}
+{{ $director->first_name }} {{ $director->last_name }}
 </a>
 </li>
 @endforeach

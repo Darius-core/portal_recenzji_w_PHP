@@ -14,10 +14,14 @@ class ReviewSeeder extends Seeder{
         $users = User::all();
 
         Movie::all()->each(function ($movie) use ($users) {
-            Review::factory(rand(3,10))->create([
-                'movie_id' => $movie->id,
-                'user_id' => $users->random()->id,
-            ]);
+            $usersForMovie = $users->random(rand(3, min(10, $users->count())));
+
+            foreach($usersForMovie as $user){
+                Review::factory()->create([
+                    'movie_id' => $movie->id,
+                    'user_id' => $user->id,
+                ]);
+            }
         });
     }
 }
