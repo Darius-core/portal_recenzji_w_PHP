@@ -12,7 +12,7 @@
 
 <body class="font-normal">
 
-<a href="#content" class="visually-hidden-focusable">Przejdź do treści</a>
+
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Główna nawigacja">
     <div class="container">

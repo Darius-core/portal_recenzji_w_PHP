@@ -13,7 +13,7 @@ body.font-large { font-size: 1.4rem; }
 
 body.high-contrast {
     background-color: #000 !important;
-    color: #fff !important;
+    color: #fff200 !important;
 }
 
 body.high-contrast a {
@@ -24,7 +24,7 @@ body.high-contrast .card,
 body.high-contrast .navbar,
 body.high-contrast footer {
     background-color: #111 !important;
-    color: #fff !important;
+    color: #fff200 !important;
 }
 
 /* WCAG focus */
