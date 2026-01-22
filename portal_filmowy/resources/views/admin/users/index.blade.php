@@ -3,6 +3,12 @@
 @section('content')
 <h1>Zarządzanie użytkownikami</h1>
 
+@if(session('success'))
+    <div class="alert alert-success mt-3">
+        {{ session('success') }}
+    </div>
+@endif
+
 <table class="table">
     <thead>
         <tr>

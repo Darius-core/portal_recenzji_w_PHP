@@ -23,6 +23,11 @@
 
 @include('admin.movies.partials.relations')
 
-<button>Zapisz</button>
+        <div class="d-flex gap-2">
+            <button class="btn btn-primary">Zapisz </button>
+            <a href="{{ route('admin.movies.index') }}" class="btn btn-secondary">
+                Anuluj
+            </a>
+        </div>
 </form>
 @endsection

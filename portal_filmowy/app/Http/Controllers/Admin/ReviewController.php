@@ -23,6 +23,6 @@ class ReviewController extends Controller{
 
     public function destroy(Review $review){
         $review->delete();
-        return back();
+        return redirect()->route('admin.reviews.index')->with('success', 'Opinia usunięta');
     }
 }

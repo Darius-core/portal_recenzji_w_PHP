@@ -48,7 +48,7 @@ class DirectorController extends Controller{
     }
 
     public function destroy(Director $director){
-        $actor->delete();
+        $director->delete();
         return redirect()->route('admin.directors.index')->with('success', 'Reżyser usunięty');
     }
 }

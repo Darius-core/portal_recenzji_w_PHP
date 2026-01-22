@@ -5,6 +5,12 @@
 
 <a href="{{ route('admin.movies.create') }}" class="btn">➕ Dodaj film</a>
 
+@if(session('success'))
+    <div class="alert alert-success mt-3">
+        {{ session('success') }}
+    </div>
+@endif
+
 <table aria-label="Lista filmów">
 <thead>
 <tr>
@@ -23,13 +29,14 @@
     <td>
         <a href="{{ route('admin.movies.edit',$movie) }}">Edytuj</a>
 
-        <form method="POST"
-              action="{{ route('admin.movies.destroy',$movie) }}"
-              style="display:inline">
+        <form action="{{ route('admin.movies.destroy', $movie) }}"
+                method="POST"
+                style="display:inline-block"
+                onsubmit="return confirm('Usunąć film?')">
             @csrf
             @method('DELETE')
-            <button aria-label="Usuń film {{ $movie->title }}">
-                Usuń
+            <button class="btn btn-sm btn-danger">
+                🗑 Usuń
             </button>
         </form>
     </td>

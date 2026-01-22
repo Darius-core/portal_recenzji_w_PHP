@@ -7,4 +7,7 @@
 <p><strong>Email:</strong> {{ $user->email }}</p>
 <p><strong>Role:</strong> {{ $user->roles->pluck('name')->join(', ') }}</p>
 <p><strong>Status:</strong> {{ $user->is_active ? 'Aktywny' : 'Zablokowany' }}</p>
+<a href="{{ route('admin.users.index') }}" class="btn btn-secondary">
+        ↩ Powrót
+    </a>
 @endsection

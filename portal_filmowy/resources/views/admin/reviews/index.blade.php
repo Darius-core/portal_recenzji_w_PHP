@@ -3,6 +3,12 @@
 @section('content')
 <h1>Recenzje</h1>
 
+@if(session('success'))
+    <div class="alert alert-success mt-3">
+        {{ session('success') }}
+    </div>
+@endif
+
 <table aria-label="Lista recenzji">
 <thead>
 <tr>

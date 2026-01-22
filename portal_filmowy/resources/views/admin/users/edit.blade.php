@@ -17,6 +17,11 @@
         </label><br>
     @endforeach
 
-    <button>Zapisz</button>
+    <div class="d-flex gap-2">
+            <button class="btn btn-primary">Zapisz zmiany</button>
+            <a href="{{ route('admin.users.index') }}" class="btn btn-secondary">
+                Anuluj
+            </a>
+        </div>
 </form>
 @endsection
