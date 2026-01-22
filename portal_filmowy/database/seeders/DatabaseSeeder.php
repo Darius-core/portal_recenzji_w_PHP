@@ -3,9 +3,15 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Schema;
 
-class DatabaseSeeder extends Seeder{
-    public function run():void{
+class DatabaseSeeder extends Seeder
+{
+    public function run(): void
+    {
+        // WYŁĄCZAMY BLOKADY KLUCZY OBCYCH
+        Schema::disableForeignKeyConstraints();
+
         $this->call([
             RoleSeeder::class,
             UserSeeder::class,
@@ -15,5 +21,8 @@ class DatabaseSeeder extends Seeder{
             MovieRelationSeeder::class,
             ReviewSeeder::class,
         ]);
+
+        // WŁĄCZAMY BLOKADY Z POWROTEM
+        Schema::enableForeignKeyConstraints();
     }
 }

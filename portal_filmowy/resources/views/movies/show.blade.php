@@ -7,7 +7,7 @@
     <div class="row g-4">
         <div class="col-md-4">
             <img
-                src="{{ $movie->poster_path }}"
+                src="{{ asset('images/' . $movie->poster_path) }}"
                 class="img-fluid rounded shadow"
                 alt="Plakat filmu {{ $movie->title }}"
             >

@@ -10,7 +10,7 @@
         <div class="col">
             <article class="card h-100 shadow-sm">
                 <img
-                    src="{{ $movie->poster_path }}"
+                    src="{{ asset('images/' . $movie->poster_path) }}"
                     class="card-img-top"
                     alt="Plakat filmu {{ $movie->title }}"
                 >

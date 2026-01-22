@@ -24,7 +24,7 @@
         @foreach($users as $user)
         <tr>
             <td>{{ $user->name }}</td>
-            <td><a href="mailto:{{ $user->email }}" class="link-light">{{ $user->email }}</a></td>
+            <td><a href="mailto:{{ $user->email }}" class="link-">{{ $user->email }}</a></td>
             <td>{{ $user->roles->pluck('name')->join(', ') }}</td>
             <td>{{ $user->is_active ? 'Aktywny' : 'Zablokowany' }}</td>
             <td>
