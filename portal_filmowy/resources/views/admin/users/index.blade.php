@@ -1,44 +1,39 @@
 @extends('admin.layout')
 
-@section('content')
-<h1>Zarządzanie użytkownikami</h1>
+@section('title', 'Użytkownicy - Panel administracyjny')
+@section('heading', 'Zarządzanie użytkownikami')
 
+@section('content')
 @if(session('success'))
-    <div class="alert alert-success mt-3">
+    <div class="alert alert-success" role="alert">
         {{ session('success') }}
     </div>
 @endif
 
-<table class="table">
-    <thead>
+<table class="table table-striped table-hover" aria-label="Lista użytkowników">
+    <thead class="table-dark">
         <tr>
-            <th>Imię</th>
-            <th>Email</th>
-            <th>Role</th>
-            <th>Status</th>
-            <th>Akcje</th>
+            <th scope="col">Imię</th>
+            <th scope="col">Email</th>
+            <th scope="col">Role</th>
+            <th scope="col">Status</th>
+            <th scope="col">Akcje</th>
         </tr>
     </thead>
     <tbody>
         @foreach($users as $user)
         <tr>
             <td>{{ $user->name }}</td>
-            <td>{{ $user->email }}</td>
+            <td><a href="mailto:{{ $user->email }}" class="link-light">{{ $user->email }}</a></td>
+            <td>{{ $user->roles->pluck('name')->join(', ') }}</td>
+            <td>{{ $user->is_active ? 'Aktywny' : 'Zablokowany' }}</td>
             <td>
-                {{ $user->roles->pluck('name')->join(', ') }}
-            </td>
-            <td>
-                {{ $user->is_active ? 'Aktywny' : 'Zablokowany' }}
-            </td>
-            <td>
-                <a href="{{ route('admin.users.show', $user) }}">Podgląd</a>
-                <a href="{{ route('admin.users.edit', $user) }}">Role</a>
+                <a href="{{ route('admin.users.show', $user) }}" class="btn btn-sm btn-info mb-1">Podgląd</a>
+                <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-sm btn-warning mb-1">Role</a>
 
-                <form method="POST"
-                      action="{{ route('admin.users.toggle', $user) }}"
-                      style="display:inline">
+                <form method="POST" action="{{ route('admin.users.toggle', $user) }}" class="d-inline">
                     @csrf @method('PATCH')
-                    <button>
+                    <button type="submit" class="btn btn-sm btn-outline-danger mb-1">
                         {{ $user->is_active ? 'Zablokuj' : 'Odblokuj' }}
                     </button>
                 </form>
@@ -48,5 +43,5 @@
     </tbody>
 </table>
 
-{{ $users->links() }}
+{{ $users->links('pagination::bootstrap-5') }}
 @endsection
