@@ -23,6 +23,15 @@ class AuthController extends Controller{
         ]);
 
         if(Auth::attempt($credentials)){
+
+            // sprawdzenie czy konto jest aktywne
+            if(!auth()->user()->is_active){
+                Auth::logout();
+                return back()->withErrors([
+                    'email' => 'Twoje konto jest zablokowane. Skontaktuj się z administratorem.'
+                ]);
+            }
+
             $request->session()->regenerate();
             
             return auth()->user()->isAdmin() ? redirect()->route('admin.dashboard') : redirect()->route('movies.index');

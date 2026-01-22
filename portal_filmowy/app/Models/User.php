@@ -11,17 +11,14 @@ class User extends Authenticatable{
 
     protected $fillable = [
         'name', 'email', 'password',
-        'font_size', 'high_contrast'
+        'font_size', 'high_contrast','is_active'
     ];
 
     protected $hidden = [
         'password', 'remember_token',
     ];
 
-    protected $casts = [
-        'high_contrast' => 'boolean',
-        'font_size' => 'float',
-    ];
+
 
     public function roles(){
         return $this->belongsToMany(Role::class);

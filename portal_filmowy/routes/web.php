@@ -7,7 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ActorController;
 use App\Http\Controllers\DirectorController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\MovieController as AdminMovieController;
 use App\Http\Controllers\Admin\ActorController as AdminActorController;
 use App\Http\Controllers\Admin\DirectorController as AdminDirectorController;
@@ -66,6 +66,6 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::get('reviews/{review}', [AdminReviewController::class, 'show'])->name('reviews.show');
     Route::delete('reviews/{review}', [AdminReviewController::class, 'destroy'])->name('reviews.destroy');
 
-    Route::resource('users', UserController::class)->except(['create','store','destroy']);
-    Route::patch('users/{user}/toggle', [UserController::class, 'toggle'])->name('users.toggle');
+    Route::resource('users', AdminUserController::class)->except(['create','store','destroy']);
+    Route::patch('users/{user}/toggle', [AdminUserController::class, 'toggle'])->name('users.toggle');
 });
