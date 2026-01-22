@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\AuthController;
@@ -15,6 +16,7 @@ use App\Http\Controllers\Admin\ReviewController as AdminReviewController;
 
 /* STRONA GŁÓWNA */
 Route::get('/', [MovieController::class, 'index'])->name('home');
+Route::get('/o-stronie', [PageController::class, 'oAutorze'])->name('o_stronie');
 
 /* FILMY */
 Route::get('/movies', [MovieController::class, 'index'])->name('movies.index');

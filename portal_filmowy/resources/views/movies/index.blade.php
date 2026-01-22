@@ -9,6 +9,7 @@
 @foreach($movies as $movie)
 <article>
     <h2>{{ $movie->title }}</h2>
+    <img src="{{ $movie->poster_path }}"  alt="{{ $movie->title }}">
     <p>Rok: {{ $movie->release_year }}</p>
     <p>⭐ {{ $movie->averageRating() ?? 'brak' }}/10</p>
 
