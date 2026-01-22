@@ -9,22 +9,27 @@ body {
 
 /* ===== WCAG ===== */
 body.font-normal { font-size: 1rem; }
-body.font-large  { font-size: 1.25rem; }
+body.font-large { font-size: 1.2rem; }
 
 body.high-contrast {
-    background: #000;
-    color: #fff;
+    background-color: #000 !important;
+    color: #fff !important;
 }
 
 body.high-contrast a {
-    color: #00ffff;
+    color: #0ff !important;
 }
 
-/* Focus */
-a:focus,
-button:focus,
-input:focus {
-    outline: 3px solid #ffbf00;
+body.high-contrast .card,
+body.high-contrast .navbar,
+body.high-contrast footer {
+    background-color: #111 !important;
+    color: #fff !important;
+}
+
+/* WCAG focus */
+:focus {
+    outline: 3px solid #ffbf00 !important;
     outline-offset: 2px;
 }
 

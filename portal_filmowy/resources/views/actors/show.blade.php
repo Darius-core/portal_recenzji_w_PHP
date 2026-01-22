@@ -3,31 +3,21 @@
 @section('title',$actor->first_name.' '.$actor->last_name)
 
 @section('content')
-<article aria-labelledby="actor-name">
+<article>
+    <h1>{{ $actor->first_name }} {{ $actor->last_name }}</h1>
 
-<h1 id="actor-name">
-{{ $actor->first_name }} {{ $actor->last_name }}
-</h1>
+    <p><strong>Data urodzin:</strong> {{ $actor->birthday }}</p>
+    <p>{{ $actor->bio }}</p>
 
-<p><strong>Data urodzin:</strong> {{ $actor->birthday }}</p>
-
-<section aria-labelledby="actor-bio">
-<h2 id="actor-bio">Biografia</h2>
-<p>{{ $actor->bio }}</p>
-</section>
-
-<section aria-labelledby="actor-movies">
-<h2 id="actor-movies">Filmy</h2>
-<ul>
-@foreach($actor->movies as $movie)
-<li>
-<a href="{{ route('movies.show',$movie) }}">
-{{ $movie->title }}
-</a>
-</li>
-@endforeach
-</ul>
-</section>
-
+    <h2 class="mt-4">Filmy</h2>
+    <ul class="list-group">
+        @foreach($actor->movies as $movie)
+            <li class="list-group-item">
+                <a href="{{ route('movies.show',$movie) }}">
+                    {{ $movie->title }}
+                </a>
+            </li>
+        @endforeach
+    </ul>
 </article>
 @endsection

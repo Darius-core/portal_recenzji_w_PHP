@@ -14,7 +14,7 @@ use App\Http\Controllers\Admin\DirectorController as AdminDirectorController;
 use App\Http\Controllers\Admin\ReviewController as AdminReviewController;
 use Illuminate\Support\Facades\Session;
 
-/* WCAG */
+/* WCAG 
 Route::post('/accessibility/font', function () {
     Session::put('font_size', request('size', 'normal'));
     return back();
@@ -24,7 +24,7 @@ Route::post('/accessibility/contrast', function () {
     Session::put('high_contrast', !Session::get('high_contrast', false));
     return back();
 })->name('accessibility.contrast');
-
+*/
 
 /* STRONA GŁÓWNA */
 Route::get('/', [MovieController::class, 'index'])->name('home');

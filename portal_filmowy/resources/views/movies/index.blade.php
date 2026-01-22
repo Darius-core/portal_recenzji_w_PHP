@@ -3,34 +3,43 @@
 @section('title','Filmy')
 
 @section('content')
-<h1>Lista filmów</h1>
+<h1 class="mb-4">Lista filmów</h1>
 
-<section class="grid" aria-label="Lista dostępnych filmów">
-@foreach($movies as $movie)
-<article aria-labelledby="movie-{{ $movie->id }}">
-    <h2 id="movie-{{ $movie->id }}">{{ $movie->title }}</h2>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    @foreach($movies as $movie)
+        <div class="col">
+            <article class="card h-100 shadow-sm">
+                <img
+                    src="{{ $movie->poster_path }}"
+                    class="card-img-top"
+                    alt="Plakat filmu {{ $movie->title }}"
+                >
 
-    <img
-        src="{{ $movie->poster_path }}"
-        alt="Plakat filmu {{ $movie->title }}"
-        loading="lazy"
-    >
+                <div class="card-body d-flex flex-column">
+                    <h2 class="h5 card-title">{{ $movie->title }}</h2>
 
-    <p><strong>Rok:</strong> {{ $movie->release_year }}</p>
-    <p>
-        <strong>Ocena:</strong>
-        {{ $movie->averageRating() ?? 'brak' }}/10
-    </p>
+                    <p class="card-text mb-1">
+                        <strong>Rok:</strong> {{ $movie->release_year }}
+                    </p>
 
-    <a href="{{ route('movies.show',$movie) }}"
-       aria-label="Przejdź do szczegółów filmu {{ $movie->title }}">
-       Szczegóły filmu
-    </a>
-</article>
-@endforeach
-</section>
+                    <p class="card-text">
+                        ⭐ {{ $movie->averageRating() ?? 'brak' }}/10
+                    </p>
 
-<nav aria-label="Paginacja filmów">
-    {{ $movies->links() }}
-</nav>
+                    <a
+                        href="{{ route('movies.show',$movie) }}"
+                        class="btn btn-primary mt-auto"
+                        aria-label="Zobacz szczegóły filmu {{ $movie->title }}"
+                    >
+                        Szczegóły
+                    </a>
+                </div>
+            </article>
+        </div>
+    @endforeach
+</div>
+
+<div class="mt-4">
+    {{ $movies->links('pagination::bootstrap-5') }}
+</div>
 @endsection

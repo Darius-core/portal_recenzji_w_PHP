@@ -3,59 +3,67 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>@yield('title','Portal filmowy')</title>
 
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="/css/app.css">
-
 </head>
 
-@php
-$font = session('font_size', 'normal');
-$contrast = session('high_contrast') ? 'high-contrast' : '';
-@endphp
+<body class="font-normal">
 
-<body class="font-{{ $font }} {{ $contrast }}">
+<a href="#content" class="visually-hidden-focusable">Przejdź do treści</a>
 
-<a href="#content" class="skip-link">Przejdź do treści</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Główna nawigacja">
+    <div class="container">
+        <a class="navbar-brand" href="{{ route('home') }}">🎬 Portal filmowy</a>
 
-<header>
-<nav aria-label="Główna nawigacja">
-    <a href="{{ route('home') }}">🎬 Portal filmowy</a>
-    <a href="{{ route('movies.index') }}">Filmy</a>
-    <a href="{{ route('o_stronie') }}">O Stronie</a>
+        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    {{-- WCAG --}}
-    <form method="POST" action="{{ route('accessibility.font') }}" style="display:inline">
-        @csrf
-        <button name="size" value="large" aria-label="Zwiększ czcionkę">A+</button>
-        <button name="size" value="normal" aria-label="Domyślna czcionka">A</button>
-    </form>
+        <div id="menu" class="collapse navbar-collapse">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('movies.index') }}">Filmy</a>
+                    <a href="{{ route('o_stronie') }}">O Stronie</a>
+               </li>
+            </ul>
 
-    <form method="POST" action="{{ route('accessibility.contrast') }}" style="display:inline">
-        @csrf
-        <button aria-label="Przełącz wysoki kontrast">🌓 Kontrast</button>
-    </form>
+            <div class="d-flex gap-2">
+                {{-- WCAG --}}
+                <button id="toggle-contrast" class="btn btn-outline-light btn-sm">Kontrast</button>
+                <button id="font-plus" class="btn btn-outline-light btn-sm">A+</button>
+                <button id="font-normal" class="btn btn-outline-light btn-sm">A</button>
 
-    @auth
-        <span>Witaj, {{ auth()->user()->name }}</span>
-        <form method="POST" action="{{ route('logout') }}">
-            @csrf
-            <button>Wyloguj</button>
-        </form>
-    @else
-        <a href="{{ route('login') }}">Logowanie</a>
-        <a href="{{ route('register') }}">Rejestracja</a>
-    @endauth
+                @auth
+                    <span class="text-light align-self-center me-2">
+                        {{ auth()->user()->name }}
+                    </span>
+
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button class="btn btn-danger btn-sm">Wyloguj</button>
+                    </form>
+                @else
+                    <a href="{{ route('login') }}" class="btn btn-outline-light btn-sm">Logowanie</a>
+                    <a href="{{ route('register') }}" class="btn btn-primary btn-sm">Rejestracja</a>
+                @endauth
+            </div>
+        </div>
+    </div>
 </nav>
-</header>
 
-<main id="content">
+<main id="content" class="container py-4" tabindex="-1">
     @yield('content')
 </main>
 
-<footer>
-    <p>© {{ date('Y') }} Portal filmowy</p>
+<footer class="bg-dark text-light text-center py-3">
+    © {{ date('Y') }} Portal filmowy
 </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/js/accessibility.js"></script>
 
 </body>
 </html>
