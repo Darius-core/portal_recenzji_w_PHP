@@ -3,11 +3,21 @@
 @section('title',$actor->first_name.' '.$actor->last_name)
 
 @section('content')
-<h1>{{ $actor->first_name }} {{ $actor->last_name }}</h1>
-<p><strong>Data urodzin:</strong> {{$actor->birthday}}</p>
-<a>{{$actor->bio}}</a>
+<article aria-labelledby="actor-name">
 
-<h2>Filmy</h2>
+<h1 id="actor-name">
+{{ $actor->first_name }} {{ $actor->last_name }}
+</h1>
+
+<p><strong>Data urodzin:</strong> {{ $actor->birthday }}</p>
+
+<section aria-labelledby="actor-bio">
+<h2 id="actor-bio">Biografia</h2>
+<p>{{ $actor->bio }}</p>
+</section>
+
+<section aria-labelledby="actor-movies">
+<h2 id="actor-movies">Filmy</h2>
 <ul>
 @foreach($actor->movies as $movie)
 <li>
@@ -17,4 +27,7 @@
 </li>
 @endforeach
 </ul>
+</section>
+
+</article>
 @endsection

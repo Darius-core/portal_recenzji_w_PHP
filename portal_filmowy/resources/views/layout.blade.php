@@ -8,7 +8,13 @@
 <link rel="stylesheet" href="/css/app.css">
 
 </head>
-<body>
+
+@php
+$font = session('font_size', 'normal');
+$contrast = session('high_contrast') ? 'high-contrast' : '';
+@endphp
+
+<body class="font-{{ $font }} {{ $contrast }}">
 
 <a href="#content" class="skip-link">Przejdź do treści</a>
 
@@ -16,6 +22,19 @@
 <nav aria-label="Główna nawigacja">
     <a href="{{ route('home') }}">🎬 Portal filmowy</a>
     <a href="{{ route('movies.index') }}">Filmy</a>
+    <a href="{{ route('o_stronie') }}">O Stronie</a>
+
+    {{-- WCAG --}}
+    <form method="POST" action="{{ route('accessibility.font') }}" style="display:inline">
+        @csrf
+        <button name="size" value="large" aria-label="Zwiększ czcionkę">A+</button>
+        <button name="size" value="normal" aria-label="Domyślna czcionka">A</button>
+    </form>
+
+    <form method="POST" action="{{ route('accessibility.contrast') }}" style="display:inline">
+        @csrf
+        <button aria-label="Przełącz wysoki kontrast">🌓 Kontrast</button>
+    </form>
 
     @auth
         <span>Witaj, {{ auth()->user()->name }}</span>

@@ -12,7 +12,19 @@ use App\Http\Controllers\Admin\MovieController as AdminMovieController;
 use App\Http\Controllers\Admin\ActorController as AdminActorController;
 use App\Http\Controllers\Admin\DirectorController as AdminDirectorController;
 use App\Http\Controllers\Admin\ReviewController as AdminReviewController;
-//use App\Http\Controllers\Admin\UserController as AdminUserController;
+use Illuminate\Support\Facades\Session;
+
+/* WCAG */
+Route::post('/accessibility/font', function () {
+    Session::put('font_size', request('size', 'normal'));
+    return back();
+})->name('accessibility.font');
+
+Route::post('/accessibility/contrast', function () {
+    Session::put('high_contrast', !Session::get('high_contrast', false));
+    return back();
+})->name('accessibility.contrast');
+
 
 /* STRONA GŁÓWNA */
 Route::get('/', [MovieController::class, 'index'])->name('home');
